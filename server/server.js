@@ -7,13 +7,12 @@ const app = express()
 function getRecipes(req, res, next) {
   const { carbs, fat, protein } = req.query
   const root = 'spoonacular-recipe-food-nutrition-v1.p.mashape.com';
-	const queryString = `/recipes/findByNutrients?maxcarbs=${carbs}&maxfat=${fat}&maxprotein=${protein}`;
+	const queryString = `/recipes/findByNutrients?maxcarbs=${carbs * 1.1}&maxfat=${fat * 1.1}&maxprotein=${protein * 1.1}&minCarbs=${carbs * 0.8}&minfat=${fat * 0.8}&minProtein=${protein * 0.8}&random=true`;
   const options = {
     host: root,
     path: queryString,
     headers: {
       'X-Mashape-Key': key
-      // Accept: 'application/json'
     }
   }
 
@@ -35,7 +34,6 @@ app.use(express.static(__dirname + '/../public'))
 app.use(bodyParser.json())
 
 app.get('/recipes', getRecipes, (req, res) => {
-  console.log(req.body)
   res.send(req.body.recipes)
 })
 

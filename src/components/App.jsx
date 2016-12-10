@@ -1,13 +1,26 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import Nav from './Nav'
+import { Recipes } from './Recipes'
 
 class App extends React.Component {
+  constructor() {
+    super()
+    this.getRecipes = this.getRecipes.bind(this)
+    this.state = {
+      recipes: []
+    }
+  }
+
+  getRecipes(recipes) {
+    this.setState({ recipes })
+  }
+
   render() {
     return (
       <div>
-        <h1>Macro Recipe Finder!!!</h1>
-        <Nav />
+        <Nav getRecipes={this.getRecipes} />
+        <Recipes recipes={this.state.recipes} />
       </div>
     )
   }
