@@ -1,10 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import Nav from './Nav'
 
 class App extends React.Component {
   render() {
     return (
-      <div>Macro Recipe Finder!!!</div>
+      <div>
+        <h1>Macro Recipe Finder!!!</h1>
+        <Nav />
+      </div>
     )
   }
 }
